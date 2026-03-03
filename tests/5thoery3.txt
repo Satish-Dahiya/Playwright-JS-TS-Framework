@@ -1,0 +1,26 @@
+Test cases can be run in maximised mode of browser by using 'args: ['--start-maximized']' in the projects section in playwright.config.ts file.
+There is no method in playwright to maximise the browser.
+
+Test cases are run on required browser using below command in terminal:
+npx playwright test foldername/filename.ts --project='browser name'
+
+playwright html report can be used instead of normal HTML report and is better than normal HTML report.
+Go to below link for details how to implement playwright-html-report in framework.
+https://github.com/nhiendohao/playwright-html
+Steps to implement playwright-html-report in the framework:--
+1. npm i -D playwright-html-reporter                    ... run in terminal and it will be added in package.json file.
+2. Add the required report type from above github page under reporter section into the playwright.config.ts
+
+['playwright-html-reporter', { 
+      testFolder: 'tests',
+      title: 'OPEN CART HTML Report',
+      project: 'Open Cart',
+      release: '9.87.6',
+      testEnvironment: 'PROD',
+      embedAssets: true,
+      embedAttachments: true,
+      outputFolder: 'playwright-html-Myreport',
+      minifyAssets: true,
+      startServer: true,                          .. set it 'true' to launch the report automatically in browser.
+    }
+]

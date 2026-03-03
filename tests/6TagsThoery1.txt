@@ -1,0 +1,34 @@
+Tags can be used in 2 wsays:
+1. { tag: ['@smoke', '@sanity'] }   .. use this in test() method
+2. test( ' @tag1 ss dd dd @tag2' )    .. use the @tagname in the test title.
+
+Run below command in terminal:-
+npx playwright test --grep "@smoke"       .. to run test with required tagname.
+npx playwright test --grep-invert "@smoke"       .. NOT to run test with required tagname.
+npx playwright test --grep " (?=.*@tag1)(?=.*@tag2) "       .. both tag1 AND tag2
+npx playwright test --grep "@tag1|@tag2|@tag3"        ... tag1 OR tag2 OR tag3
+
+Shortcut scripts to run tags can be added in package.json file.
+
+If required, Other options/information/annotation can also be added in tag section. These options will be shown in report.
+Use the below tag code in test() method to implement tagging and other information to be used with tagging.
+test( ' test title', tag section, async()  )
+
+{ 
+    tag: ['@tag1', '@tag2', '@tag3'],
+    annotation: [
+        { type: 'epic', description: 'EPIC 100 - Design Login page for Open Cart App.' },
+        { type: 'feature', description: 'Login Page Feature' },
+        { type: 'story', description: 'US 50 - User can login to App' },
+        { type: 'owner', description: 'Narender Modi' }
+    ]
+    
+}
+
+Create a repo on GitHub to push all the project code on it.
+In the .gitignore file, specify the folders/files that we dont want to upload on GItHub.
+
+Basic GIT commands:- ( Run these commands in terminal of VSC. )
+git init                ... Initializes(creates a .git file ) empty Git repository in project folder.
+
+

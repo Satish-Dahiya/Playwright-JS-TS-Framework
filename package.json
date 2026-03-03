@@ -1,0 +1,33 @@
+{
+  "name": "playwrightframework2026",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+
+    "test-smoke": "npx playwright test --grep @smoke",
+    "test-sanity": "npx playwright test --grep @sanity",
+    "test_no-flaky": "npx playwright test --grep-invert @flaky",
+
+    "test-QA": "npx playwright test --config=playwright.config.qa.ts",
+    "test-DEV": "npx playwright test --config=playwright.config.dev.ts",
+    "test-PROD": "npx playwright test --config=playwright.config.ts",
+    "allure-generate": "npx allure generate allure-results --clean -o allure-myreportFolder",
+    "allure-open": "npx allure open allure-myreportFolder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.2.3",
+    "allure-commandline": "^2.36.0",
+    "allure-playwright": "^3.4.5",
+    "playwright-html-reporter": "^0.1.11"
+  },
+  "dependencies": {
+    "csv-parse": "^6.1.0"
+  }
+}
