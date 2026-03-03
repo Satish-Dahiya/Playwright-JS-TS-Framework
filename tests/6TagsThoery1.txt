@@ -30,5 +30,14 @@ In the .gitignore file, specify the folders/files that we dont want to upload on
 
 Basic GIT commands:- ( Run these commands in terminal of VSC. )
 git init                ... Initializes(creates a .git file ) empty Git repository in project folder.
+git remote add origin https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework.git
+git config --global user.email "satishkd99automation@gmail.com"
+git config --global user.name "Satish-Dahiya"
+git status
+git add .
+git commit -m "First Code of the Framework"
+git push origin master
+
+
 
 
