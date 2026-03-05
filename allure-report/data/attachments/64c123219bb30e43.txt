@@ -1,0 +1,1 @@
+Clicked on element : getByText('Register', { exact: true })

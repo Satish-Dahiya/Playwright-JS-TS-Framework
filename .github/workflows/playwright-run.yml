@@ -146,6 +146,6 @@ jobs:
       - name: Report URLs
         run: |
           echo "Reports Published!"
-          echo "Playwright Built-in: https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/playwright-report/index.html"
-          echo "Playwright HTML Reporter: https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/playwright-html-report/index.html"
-          echo "Allure: https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/allure-report/index.html"
+          echo "Playwright Built-in: https://satish-dahiya.github.io/Playwright-JS-TS-Framework/playwright-report/index.html"
+          echo "Playwright HTML Reporter: https://satish-dahiya.github.io/Playwright-JS-TS-Framework/playwright-html-report/index.html"
+          echo "Allure: https://satish-dahiya.github.io/Playwright-JS-TS-Framework/allure-report/index.html"

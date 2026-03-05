@@ -1,0 +1,2 @@
+Clicked on element : getByText('Register', { exact: true })
+Entered value : Tom in the element : getByRole('textbox', { name: 'First Name' })
