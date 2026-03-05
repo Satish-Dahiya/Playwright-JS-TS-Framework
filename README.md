@@ -1,4 +1,4 @@
-# PWFWDemo Automation Reports
+# Satish PW Framework Automation Reports
 
 Welcome to the **Playwright-JS-TS-Framework** automation project. Below you can find the latest test results and HTML reports.
 
