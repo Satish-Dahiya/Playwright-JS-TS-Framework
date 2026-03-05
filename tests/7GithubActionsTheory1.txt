@@ -1,0 +1,15 @@
+In GITHUB, tests are run always in headless mode, so do the settings accordingly in playwright.config.ts files.
+What is GITHUB Actions and it's pros and cons and its use cases in project framework.
+
+Steps to integrate the Repo code into the GITHUB Actions to run the framework code:
+
+Settings > Actions > General > Workflow permissions > Select the 'Read and write permissions' checkbox. 
+Settings > Pages > Set branch as 'Master' and Save it.
+Create folder '.github/workflows' in project root.
+Create a 'playwright-run.yml' file under above folder and add/modify content in it carefully as per your GITHUB repo url and test case to be run.
+'playwright-run.yml' file has 2 sections: test and publish reports section.
+Set headless: true in the config.ts file.
+Comment the retries section in config.ts file to avoid retries run.
+Set 'startServer: false' in the reporter section for 'playwright-html-reporter'.(not to launch report automatically in local browser.)
+
+

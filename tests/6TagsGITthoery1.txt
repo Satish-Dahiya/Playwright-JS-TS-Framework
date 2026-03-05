@@ -1,14 +1,14 @@
-Tags can be used in 2 wsays:
+Tags can be used in 2 ways:
 1. { tag: ['@smoke', '@sanity'] }   .. use this in test() method
 2. test( ' @tag1 ss dd dd @tag2' )    .. use the @tagname in the test title.
 
-Run below command in terminal:-
+Run below command in terminal to run with required tags:-
 npx playwright test --grep "@smoke"       .. to run test with required tagname.
 npx playwright test --grep-invert "@smoke"       .. NOT to run test with required tagname.
 npx playwright test --grep " (?=.*@tag1)(?=.*@tag2) "       .. both tag1 AND tag2
 npx playwright test --grep "@tag1|@tag2|@tag3"        ... tag1 OR tag2 OR tag3
 
-Shortcut scripts to run tags can be added in package.json file.
+Shortcut scripts to run test with tags can be added in package.json file.
 
 If required, Other options/information/annotation can also be added in tag section. These options will be shown in report.
 Use the below tag code in test() method to implement tagging and other information to be used with tagging.
@@ -37,7 +37,3 @@ git status
 git add .
 git commit -m "First Code of the Framework"
 git push origin master
-
-
-
-
