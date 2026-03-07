@@ -6,11 +6,11 @@ Welcome to the **Playwright-JS-TS-Framework** automation project. Below you can 
 
 ## Workflow Status
 
-[![Playwright Tests](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml)
+[![Playwright Tests](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions)
 
 ---
 
-## HTML Reports
+## HTML Reports By Code Push on GitHub
 
 Click the badges below to view the latest reports published via GitHub Pages:
 
@@ -25,3 +25,11 @@ Click the badges below to view the latest reports published via GitHub Pages:
 - Playwright HTML report is generated automatically from `npx playwright test`.  
 - Allure report is generated from the `allure-results` folder.  
 - Both reports are published to `gh-pages` branch and updated on each workflow run.
+
+---
+
+## Main Dashboard for Reports : Manual Run
+
+[![Playwright Tests](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://satish-dahiya.github.io/Playwright-JS-TS-Framework/)
+
+---
