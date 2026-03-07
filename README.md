@@ -10,7 +10,7 @@ Welcome to the **Playwright-JS-TS-Framework** automation project. Below you can 
 
 ---
 
-## HTML Reports By Code Push on GitHub
+## HTML Reports By Code Push
 
 Click the badges below to view the latest reports published via GitHub Pages:
 
@@ -30,6 +30,6 @@ Click the badges below to view the latest reports published via GitHub Pages:
 
 ## Main Dashboard for Reports : Manual Run
 
-[![Playwright Tests](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://satish-dahiya.github.io/Playwright-JS-TS-Framework/)
+[![Dashboard: Manual Run](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://satish-dahiya.github.io/Playwright-JS-TS-Framework/)
 
 ---
