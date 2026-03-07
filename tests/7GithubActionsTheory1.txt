@@ -11,7 +11,19 @@ Create a 'playwright-run.yml' file under above folder and add/modify content in 
 Set headless: true in the config.ts file.
 Comment the retries section in config.ts file to avoid retries run.
 Set 'startServer: false' in the reporter section for 'playwright-html-reporter'.(not to launch report automatically in local browser.)
+Workflow in GITHUB actions will run on every push of the code from local to GITHUB repo, as per settings in the playwright-run.yml file.
+Settings > Pages > Set branch as 'gh-pages' in 'Build and deployment' section, from earlier master branch and Save it.
+'gh-pages' branch will appear in the code section together with 'master' branch.
+Create a README.md file at project root and modify its content as per the our GITHUB repo.
+README.md file is used to create badges for reporting in the code section on GITHUB repo.
+In the config.ts file under use section, add 'headless: !!process.env.CI' so that it can pick 2 values(false for local run and true for CI run) .
+Value of CI will be provided dynamically from yml file.
+To run tests on different envs and browsers thru GITHUB Actions, create different playwright.config.ts files and do necessary changes for login creds and browsers in them.
+Create a manual-run.yml file to run the framework from GITHUB Actions manually.
+CI will be set to true in manual-run.yml file.
+Make the required changes in manua-run.yml file as per our GITHUB repo and project.
+manual-run.yml file will create a workflow in the GITHUB Actions.
+After pushing the code, 'Playwright Manual Run' workflow will be created under GITHUB Actions.
+Go to 'Playwright Manual Run' workflow and run it with different envs and browsers.
 
 
-Create a README.md file at project root and modify its content as per the GITHUB repo.
-README.md file is used to create dashboard for reporting in the code section on GITHUB repo.

@@ -40,7 +40,7 @@ export default defineConfig({
   },
 
   metadata: {
-    appUsername: 'sat@sat.com',    
+    appUsername: 'sat@sat.com',     // use credentials for PROD
     appPassword: 'test1234'
   },
 
