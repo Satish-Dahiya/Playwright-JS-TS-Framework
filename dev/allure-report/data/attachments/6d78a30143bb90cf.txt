@@ -1,0 +1,4 @@
+Entered value : sat1111@sat.com in the element : getByRole('textbox', { name: 'E-Mail Address' })
+Entered value : test1222234 in the element : getByRole('textbox', { name: 'Password' })
+Clicked on element : locator('input[type="submit"][value="Login"]')
+Invalid Login Error Message:  Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.
