@@ -1,5 +1,7 @@
+Auto pipeline is used for end to end tests execution in various envs on the GITHUB Actions.
 Steps to create the auto-pipeline workflow in GITHUB Actions.
-Static Code Analysis > Dev > QA > Stage > Prod > Report Generation > Email Notification
+
+End to End pipeline is :     Static Code Analysis > Dev > QA > Stage > Prod > Report Generation > Email Notification
 Create 4 different config.ts files for different envs to configure all Environments in Complete Pipeline.
 
 ES Lint is used to do static code analysis of the automation code. It provides some set of rules to be followed while writing automation code.
@@ -30,7 +32,7 @@ MAIL_PASSWORD	Selenium@123456
 MAIL_FROM	CI Notifications <mail@naveenautomationlabs.com>
 NOTIFICATION_EMAILS	recipient1@gmail.com,recipient2@company.com
 
-Create your own Slack Account on slack.com and the follow below steps to integrate Slack APIs with our own Slack Account.
+Create your own Slack Account on slack.com and follow below steps to integrate Slack APIs with our own Slack Account to get notifications on Slack channel.
 
 TO SETUP SLACK NOTIFICATIONS, you need to create a Slack Incoming Webhook: Follow below 4 steps:-
 
@@ -77,7 +79,7 @@ MAIL_PASSWORD	Selenium@123456
 MAIL_FROM	CI Notifications <mail@naveenautomationlabs.com>
 NOTIFICATION_EMAILS	recipient1@gmail.com,recipient2@company.com
 
-Create .eslintrc.cjs file in project folder to imlement static code analysis by ES Lint. ( get file content from Naveen's GitHub repo )
+Create .eslintrc.cjs file in root project folder to imlement static code analysis by ES Lint. ( get file content from Naveen's GitHub repo )
 This file contains the rules for static code analysis.
 
 Add the below 4 lint related scripts in the package.json file.
@@ -87,19 +89,21 @@ Add the below 4 lint related scripts in the package.json file.
 "lint:report:json": "eslint . --ext .ts,.js -f json -o eslint-report/eslint-results.json || true", 
 
 Add the below 3 lint related devDependencies in the package.json file and then run 'npm install' in terminal to install all these devDependencies.
-"allure-commandline": "^2.36.0",
-"allure-playwright": "^3.4.5",
+"@typescript-eslint/eslint-plugin": "^7.0.0",
+"@typescript-eslint/parser": "^7.0.0",
 "eslint": "^8.57.0"
 
-Run the command 'npm run lint:report' in the terminal to generate static analysis report.
+Run the short script command 'npm run lint:report' in the terminal to generate static analysis report.
 Folder 'eslint-report' will be created in project folder containg index.html report.
 Open this index.html file in browser to see the report.
 Fix the static code analysis errors in the respective project files till all the errors/warnings gets removed.
-Command 'npm run lint' is used to print errors/warmnings from various files in the terminal console.
+Short script Command 'npm run lint' is used to print errors/warmnings from various files in the terminal console itself.
 
 Cron job can also be configured in auto-pipeline.yml file to run execution after certain interval of time.( comment this in file for time being)
 
 Push the local code to repo, then auto-pipeline workflow will run in the GITHUB Actions and notifications will be sent to emails and slack.
 Check the pipeline execution status in the GITHUB Actions auto-pipeline workflow. 
 
-Only 1 test from login.spec file having tasg as @sample is being executed here to check this auto-pipeline workflow.
+Only 1 test from login.spec file having tag as @sample is being executed here to check this auto-pipeline workflow in GITHUB Actions.
+
+Some errors may occur that 'secrets cannot be used to repo' while code push. Resolve these errors first and then push the code again.

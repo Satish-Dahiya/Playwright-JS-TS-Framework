@@ -34,21 +34,21 @@ type RegData = {
 
 // let registrationData: RegData[] = JSON.parse( fs.readFileSync('./data/register.json', 'utf-8') );     // parse() Converts JSON string into an object.
 
-let fileContent = fs.readFileSync('./data/register.csv', 'utf-8');
-let registrationData: RegData[] = parse(fileContent, {
+const fileContent = fs.readFileSync('./data/register.csv', 'utf-8');
+const registrationData: RegData[] = parse(fileContent, {
     columns: true,                                                                          // if column headers are present in the csv file.
     skip_empty_lines: true                                                                  // to skip empty data lines from the csv file.
 });
 
 
-for (let user of registrationData) {
+for (const user of registrationData) {
 
     test(`Verify user is able to Register: ${user.firstname}`, async ({ page, baseURL }) => {
 
-        let lp = new LoginPage(page);
+        const lp = new LoginPage(page);
         await lp.goToLoginPage(baseURL);
-        let regPg: RegisterPage = await lp.navigateToRegisterPage();
-        let isUserRegistered: boolean = await regPg.registerUser(
+        const regPg: RegisterPage = await lp.navigateToRegisterPage();
+        const isUserRegistered: boolean = await regPg.registerUser(
             user.firstname, user.lastname, getRandomEmail(), user.telephone, user.password, user.subsribeNewsletter);
 
         expect(isUserRegistered).toBeTruthy();
@@ -60,7 +60,7 @@ for (let user of registrationData) {
 // to generate the random dynamic email for above code
 // static email from CSV file is not read in this case.
 function getRandomEmail(): string {
-    let randomValue = Math.random().toString(36).substring(2, 9);
+    const randomValue = Math.random().toString(36).substring(2, 9);
     return `auto_${randomValue}@skd.com`;
 }
 

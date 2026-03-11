@@ -35,9 +35,9 @@ test('@sample verify valid login', async ( { hp } ) => {                  // hp 
 
 
 test('verify Invalid login', async ({page, baseURL})=>{                 // baseURL is coming from config.ts file
-    let lp = new LoginPage(page);                                       // object of LoginPage class.
+    const lp = new LoginPage(page);                                       // object of LoginPage class.
     await lp.goToLoginPage(baseURL);
     await lp.doLogin('sat1111@sat.com', 'test1222234');
-    let invalidLoginMsz = await lp.getInvalidLoginMessage();
+    const invalidLoginMsz = await lp.getInvalidLoginMessage();
     expect(invalidLoginMsz).toContain('Warning: No match for E-Mail Address and/or Password.');
 });

@@ -28,34 +28,34 @@ import { ProductInfoPage } from '../pages/3ProductInfoPage1';
 import {test, expect} from '../fixtures/4baseFixtures1';
 
 
-let searchData = [
+const searchData = [
     { searchkey: 'macbook', productname: 'MacBook Pro', imagescount: 4 },
     { searchkey: 'macbook', productname: 'MacBook Air', imagescount: 4 },
     { searchkey: 'samsung', productname: 'Samsung Galaxy Tab 10.1', imagescount: 7 }
 ];
 
 
-for (let product of searchData) {
+for (const product of searchData) {
     test(`verify product Header for ${product.productname} `, async ({ hp }) => {               // hp is coming from Fixture now.
 
         // let lp: LoginPage = new LoginPage(page);
         // await lp.goToLoginPage();
         // let hp: HomePage = await lp.doLogin('sat@sat.com', 'test1234');
-        let rp: ResultsPage = await hp.doSearch(product.searchkey);
-        let pi: ProductInfoPage = await rp.selectProduct(product.productname);
+        const rp: ResultsPage = await hp.doSearch(product.searchkey);
+        const pi: ProductInfoPage = await rp.selectProduct(product.productname);
         expect(await pi.getProductHeader()).toBe(product.productname);
     });
 
 }
 
-for (let product of searchData) {
+for (const product of searchData) {
     test(`verify product Images Count for ${product.productname} : ${product.imagescount} `, async ({ hp }) => {            // hp is coming from Fixture now.
 
         // let lp: LoginPage = new LoginPage(page);
         // await lp.goToLoginPage();
         // let hp: HomePage = await lp.doLogin('sat@sat.com', 'test1234');
-        let rp: ResultsPage = await hp.doSearch(product.searchkey);
-        let pi: ProductInfoPage = await rp.selectProduct(product.productname);
+        const rp: ResultsPage = await hp.doSearch(product.searchkey);
+        const pi: ProductInfoPage = await rp.selectProduct(product.productname);
         expect(await pi.getProductImagesCount()).toBe(product.imagescount);
     });
 
@@ -63,14 +63,14 @@ for (let product of searchData) {
 
 
 
-test(`verify product MetaData `, async ({ hp }) => {                            // hp is coming from Fixture now.
+test('verify product MetaData ', async ({ hp }) => {                            // hp is coming from Fixture now.
 
     // let lp: LoginPage = new LoginPage(page);
     // await lp.goToLoginPage();
     // let hp: HomePage = await lp.doLogin('sat@sat.com', 'test1234');
-    let rp: ResultsPage = await hp.doSearch('macbook');
-    let pi: ProductInfoPage = await rp.selectProduct('MacBook Pro');
-    let actualProductFullDetails: Map<string, string | number | null> = await pi.getProductDetails();      // returns map
+    const rp: ResultsPage = await hp.doSearch('macbook');
+    const pi: ProductInfoPage = await rp.selectProduct('MacBook Pro');
+    const actualProductFullDetails: Map<string, string | number | null> = await pi.getProductDetails();      // returns map
 
     expect.soft(actualProductFullDetails.get('header')).toBe('MacBook Pro');      // soft assertion to not stop execution if any assertion fails.
     expect.soft(actualProductFullDetails.get('Brand')).toBe('Apple');             // retrieves value of a key from map.
@@ -80,14 +80,14 @@ test(`verify product MetaData `, async ({ hp }) => {                            
 });
 
 
-test(`verify product Pricing `, async ({ hp }) => {                             // hp is coming from Fixture now.
+test('verify product Pricing ', async ({ hp }) => {                             // hp is coming from Fixture now.
 
     // let lp: LoginPage = new LoginPage(page);
     // await lp.goToLoginPage();
     // let hp: HomePage = await lp.doLogin('sat@sat.com', 'test1234');
-    let rp: ResultsPage = await hp.doSearch('macbook');
-    let pi: ProductInfoPage = await rp.selectProduct('MacBook Pro');
-    let actualProductFullDetails: Map<string, string | number | null> = await pi.getProductDetails();
+    const rp: ResultsPage = await hp.doSearch('macbook');
+    const pi: ProductInfoPage = await rp.selectProduct('MacBook Pro');
+    const actualProductFullDetails: Map<string, string | number | null> = await pi.getProductDetails();
 
     expect.soft(actualProductFullDetails.get('header')).toBe('MacBook Pro');
     expect.soft(actualProductFullDetails.get('price')).toBe('$2,000.00');

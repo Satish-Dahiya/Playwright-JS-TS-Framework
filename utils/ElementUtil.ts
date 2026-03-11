@@ -18,7 +18,7 @@ waitForTimeout() from playwright.config.ts file is applicable to .spec test file
 
  */
 
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 type flexibleLocator = string | Locator;             // XPATH and CSS are string and Semantic locators are of Locator type.
 
@@ -216,7 +216,7 @@ export class ElementUtil {
     async waitForElementVisible(locator: flexibleLocator, timeout: number = 5000): Promise<boolean> {
         try {
             await this.getLocator(locator).waitFor({ state: 'visible', timeout });
-            console.log(`Waited for element to be visible.`);
+            console.log('Waited for element to be visible.');
             return true;
         }
         catch {
@@ -231,7 +231,7 @@ export class ElementUtil {
     async waitForElementAttached(locator: flexibleLocator, timeout: number = 5000): Promise<boolean> {
         try {
             await this.getLocator(locator).waitFor({ state: 'attached', timeout });
-            console.log(`Waited for element to be attached to DOM.`);
+            console.log('Waited for element to be attached to DOM.');
             return true;
         }
         catch {

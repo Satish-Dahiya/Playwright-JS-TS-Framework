@@ -37,20 +37,20 @@ export class ProductInfoPage {
         this.eleUtil = new ElementUtil(page);
         this.header = page.locator('h1');
         this.imageCount = page.locator('div#content img');
-        this.productMetaData = page.locator(`(//div[@id='content']//ul[@class='list-unstyled'])[1]/li`);  // locator captures metadata in key-value pairs.
-        this.productPriceData = page.locator(`(//div[@id='content']//ul[@class='list-unstyled'])[2]/li`);
+        this.productMetaData = page.locator('(//div[@id=\'content\']//ul[@class=\'list-unstyled\'])[1]/li');  // locator captures metadata in key-value pairs.
+        this.productPriceData = page.locator('(//div[@id=\'content\']//ul[@class=\'list-unstyled\'])[2]/li');
     }
 
     //3. page actions/methods
     async getProductHeader(): Promise<string> {
-        let header = await this.eleUtil.getInnerText(this.header);
+        const header = await this.eleUtil.getInnerText(this.header);
         console.log('Product Header is : ' + header);
         return header.trim();
     }
 
     async getProductImagesCount(): Promise<number> {
         await this.eleUtil.waitForElementVisible(this.imageCount);
-        let imagesCount = await this.imageCount.count();
+        const imagesCount = await this.imageCount.count();
         console.log(`Total Number of images for Product: ${await this.getProductHeader()} is ==> ${imagesCount}`);     // one method calls another method internally.
         return imagesCount;
     }
@@ -72,7 +72,7 @@ export class ProductInfoPage {
     }
 
     private async printProductDetails() {                          // method to print map.
-        for (let [key, value] of this.productMap) {
+        for (const [key, value] of this.productMap) {
             console.log(key + '::::' + value);
         }
     }
@@ -83,11 +83,11 @@ export class ProductInfoPage {
     // Reward Points: 800
     // Availability: Out Of Stock
     private async getProductMetaData() {
-        let productMetaData: string[] = await this.productMetaData.allInnerTexts();                      // captures all innextexts in key-value pair.
-        for (let meta of productMetaData) {
-            let metadata: string[] = meta.split(':');
-            let metaKey = metadata[0].trim();
-            let metaValue = metadata[1].trim();
+        const productMetaData: string[] = await this.productMetaData.allInnerTexts();                      // captures all innextexts in key-value pair.
+        for (const meta of productMetaData) {
+            const metadata: string[] = meta.split(':');
+            const metaKey = metadata[0].trim();
+            const metaValue = metadata[1].trim();
 
             this.productMap.set(metaKey, metaValue);                // adds key-value to empty map.
         }
@@ -97,9 +97,9 @@ export class ProductInfoPage {
     // $2,000.00
     // Ex Tax: $2,000.00
     private async getProductPricingData() {
-        let productPricing: string[] = await this.productPriceData.allInnerTexts();
-        let productPrice = productPricing[0].trim();
-        let productExTax = productPricing[1].split(':')[1].trim();
+        const productPricing: string[] = await this.productPriceData.allInnerTexts();
+        const productPrice = productPricing[0].trim();
+        const productExTax = productPricing[1].split(':')[1].trim();
 
         this.productMap.set('price', productPrice);         // we can add our own custom key
         this.productMap.set('extaxprice', productExTax);
