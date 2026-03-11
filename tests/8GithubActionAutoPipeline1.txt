@@ -52,7 +52,7 @@ Click "Allow"
 Step 3: Copy the Webhook URL
 You'll see a URL like:
 https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
-https://hooks.slack.com/services/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           .. genetrated by me for my Slack , from https://api.slack.com/apps
+ggggggg           .. genetrated by me for my Slack , from https://api.slack.com/apps
 
 Step 4: Add to GitHub Secrets
 Go to your repo → Settings → Secrets and variables → Actions
