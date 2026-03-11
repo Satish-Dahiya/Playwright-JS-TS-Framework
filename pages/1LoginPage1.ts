@@ -34,7 +34,7 @@ export class LoginPage {
         this.eleUtil = new ElementUtil(page);
         this.emailId = page.getByRole('textbox', { name: 'E-Mail Address' });
         this.password= page.getByRole('textbox', { name: 'Password' });
-        this.loginBtn= page.locator(`input[type="submit"][value="Login"]`);
+        this.loginBtn= page.locator('input[type="submit"][value="Login"]');
         this.warningMsz= page.locator('.alert.alert-danger.alert-dismissible');
         this.resgisterLink= page.getByText('Register', {exact:true});
     }
@@ -44,7 +44,7 @@ export class LoginPage {
      * Navigate to login page.
      */
     async goToLoginPage(baseURL: string | undefined) {                  // baseURL is defined in playwright.config.ts file at global level.
-        await this.page.goto(baseURL + `?route=account/login`);
+        await this.page.goto(baseURL + '?route=account/login');
     }
 
     /**

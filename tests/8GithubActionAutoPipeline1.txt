@@ -1,0 +1,105 @@
+Steps to create the auto-pipeline workflow in GITHUB Actions.
+Static Code Analysis > Dev > QA > Stage > Prod > Report Generation > Email Notification
+Create 4 different config.ts files for different envs to configure all Environments in Complete Pipeline.
+
+ES Lint is used to do static code analysis of the automation code. It provides some set of rules to be followed while writing automation code.
+
+Naveens Training Repo :  https://github.com/naveenanimation20/June2025PWFramework/tree/master/.github/workflows
+
+Secret	Description
+SLACK_WEBHOOK_URL	Slack Incoming Webhook URL
+MAIL_SERVER	SMTP server (e.g., smtp.gmail.com)
+MAIL_PORT	SMTP port (e.g., 587 for TLS)
+MAIL_USERNAME	SMTP username mail@naveenautomationlabs.com
+MAIL_PASSWORD	SMTP password/app password
+MAIL_FROM	Sender email address
+NOTIFICATION_EMAILS	Comma-separated recipients (e.g., user@company.com,team@otherdomain.org)
+
+Google Workspace	smtp.gmail.com	587 (TLS)
+Microsoft 365	smtp.office365.com	587 (TLS)
+Zoho Mail	smtp.zoho.com	587 (TLS)
+GoDaddy	smtpout.secureserver.net	465 (SSL)
+Hostinger	smtp.hostinger.com	587 (TLS)
+Namecheap	mail.privateemail.com	587 (TLS)
+
+Secret	Value
+MAIL_SERVER	smtp.hostinger.com
+MAIL_PORT	465
+MAIL_USERNAME	mail@naveenautomationlabs.com
+MAIL_PASSWORD	Selenium@123456
+MAIL_FROM	CI Notifications <mail@naveenautomationlabs.com>
+NOTIFICATION_EMAILS	recipient1@gmail.com,recipient2@company.com
+
+Create your own Slack Account on slack.com and the follow below steps to integrate Slack APIs with our own Slack Account.
+
+TO SETUP SLACK NOTIFICATIONS, you need to create a Slack Incoming Webhook: Follow below 4 steps:-
+
+Step 1: Create Slack Webhook
+Go to: https://api.slack.com/apps
+Click "Create New App" → "From scratch"
+Enter:
+App Name: Playwright CI (or any name)
+Workspace: Select your Slack workspace
+Click "Create App"
+
+Step 2: Enable Incoming Webhooks
+In the app settings, click "Incoming Webhooks" (left sidebar)
+Toggle "Activate Incoming Webhooks" to On
+Click "Add New Webhook to Workspace"
+Select the channel where you want notifications (e.g., #testing, #ci-notifications)
+Click "Allow"
+
+Step 3: Copy the Webhook URL
+You'll see a URL like:
+https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+https://hooks.slack.com/services/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           .. genetrated by me for my Slack , from https://api.slack.com/apps
+
+Step 4: Add to GitHub Secrets
+Go to your repo → Settings → Secrets and variables → Actions
+Click "New repository secret"
+Name: SLACK_WEBHOOK_URL
+Value: Paste the webhook URL
+Click "Add secret"
+Once done, re-run the workflow and you'll get Slack notifications in your chosen channel!
+
+These are email ids of email domain of Naveen from Hostinger.com:-
+submit@naveenautomationlabs.com
+training@naveenautomationlabs.com
+mail@naveenautomationlabs.com
+
+In GITHUB Repo, Go to Actions tab > Secrets and Variables > Actions > Secrets tab > Repository secrets
+Add all the secrets one by one by clicking on 'New Repository Secret', with below values:-
+Secret	Value
+MAIL_SERVER	smtp.hostinger.com
+MAIL_PORT	587
+MAIL_USERNAME	mail@naveenautomationlabs.com
+MAIL_PASSWORD	Selenium@123456
+MAIL_FROM	CI Notifications <mail@naveenautomationlabs.com>
+NOTIFICATION_EMAILS	recipient1@gmail.com,recipient2@company.com
+
+Create .eslintrc.cjs file in project folder to imlement static code analysis by ES Lint. ( get file content from Naveen's GitHub repo )
+This file contains the rules for static code analysis.
+
+Add the below 4 lint related scripts in the package.json file.
+"lint": "eslint . --ext .ts,.js --report-unused-disable-directives --max-warnings 0",
+"lint:fix": "eslint . --ext .ts,.js --fix",
+"lint:report": "eslint . --ext .ts,.js -f html -o eslint-report/index.html || true",
+"lint:report:json": "eslint . --ext .ts,.js -f json -o eslint-report/eslint-results.json || true", 
+
+Add the below 3 lint related devDependencies in the package.json file and then run 'npm install' in terminal to install all these devDependencies.
+"allure-commandline": "^2.36.0",
+"allure-playwright": "^3.4.5",
+"eslint": "^8.57.0"
+
+Run the command 'npm run lint:report' in the terminal to generate static analysis report.
+Folder 'eslint-report' will be created in project folder containg index.html report.
+Open this index.html file in browser to see the report.
+Fix the static code analysis errors in the respective project files till all the errors/warnings gets removed.
+Command 'npm run lint' is used to print errors/warmnings from various files in the terminal console.
+
+Cron job can also be configured in auto-pipeline.yml file to run execution after certain interval of time.( comment this in file for time being)
+
+Push the local code to repo, then auto-pipeline workflow will run in the GITHUB Actions and notifications will be sent to emails and slack.
+Check the pipeline execution status in the GITHUB Actions auto-pipeline workflow. 
+
+Only 1 test from login.spec file having tasg as @sample is being executed here to check this auto-pipeline workflow.

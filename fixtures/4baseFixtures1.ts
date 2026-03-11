@@ -18,17 +18,17 @@ type myFixtures = {                       // Fixture will return the Home Page C
 }
 
 
-export let test = base.extend<myFixtures>({
+export const test = base.extend<myFixtures>({
 
     hp: async ({ page, baseURL }, use, testInfo) => {
 
-        let lp = new LoginPage(page);
+        const lp = new LoginPage(page);
         await lp.goToLoginPage(baseURL);
 
-        let uname = testInfo.project.metadata.appUsername;       // used to read the metadata from the playwright.config.ts file.
-        let pword = testInfo.project.metadata.appPassword;
+        const uname = testInfo.project.metadata.appUsername;       // used to read the metadata from the playwright.config.ts file.
+        const pword = testInfo.project.metadata.appPassword;
 
-        let hp = await lp.doLogin(uname, pword);
+        const hp = await lp.doLogin(uname, pword);
         expect(await hp.isUserLoggedIn()).toBeTruthy();
 
         await use(hp);                         // return the Home Page class object reference from arrow function/fixture.

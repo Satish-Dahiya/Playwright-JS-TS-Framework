@@ -22,7 +22,7 @@ import { HomePage } from '../pages/2HomePage1';
 
 import {test, expect} from '../fixtures/4baseFixtures1';
 
-test('verify valid login', async ( { hp } ) => {                  // hp is coming from Fixture now.
+test('@sample verify valid login', async ( { hp } ) => {                  // hp is coming from Fixture now.
     // let lp: LoginPage = new LoginPage(page);                                       // object of LoginPage class.
     // await lp.goToLoginPage();
     // let hp : HomePage = await lp.doLogin('sat@sat.com', 'test1234');               // returns object of HomePage class.

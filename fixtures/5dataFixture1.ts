@@ -25,11 +25,11 @@ type csvFixture = {
     regData: RegData[];
 };
 
-export let dataTest = base.extend<csvFixture>({                            // name of fixture is dataTest
+export const dataTest = base.extend<csvFixture>({                            // name of fixture is dataTest
     regData : async ({ }, use) => {
 
-        let fileContent = fs.readFileSync('./data/register.csv', 'utf-8');
-        let registrationData: RegData[] = parse(fileContent, {
+        const fileContent = fs.readFileSync('./data/register.csv', 'utf-8');
+        const registrationData: RegData[] = parse(fileContent, {
             columns: true,                                                                          
             skip_empty_lines: true                                                                  
         });
