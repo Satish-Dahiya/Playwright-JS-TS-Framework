@@ -7,7 +7,7 @@ Import ElementUtil class here from ElementUtil.ts file.
 
 import { Locator, Page } from '@playwright/test';
 import { ElementUtil } from '../utils/ElementUtil';
-import { LoginPage } from '../pages/1LoginPage1';
+// import { LoginPage } from '../pages/1LoginPage1';
 import {ProductInfoPage} from '../pages/3ProductInfoPage1';
 
 export class ResultsPage {

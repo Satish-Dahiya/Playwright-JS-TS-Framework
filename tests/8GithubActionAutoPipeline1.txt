@@ -99,6 +99,9 @@ Open this index.html file in browser to see the report.
 Fix the static code analysis errors in the respective project files till all the errors/warnings gets removed.
 Short script Command 'npm run lint' is used to print errors/warmnings from various files in the terminal console itself.
 
+Below line is added to remove "empty object pattern" error from the ES Lint report. Add this at line level or file level :=
+/* eslint-disable no-empty-pattern */
+
 Cron job can also be configured in auto-pipeline.yml file to run execution after certain interval of time.( comment this in file for time being)
 
 Push the local code to repo, then auto-pipeline workflow will run in the GITHUB Actions and notifications will be sent to emails and slack.

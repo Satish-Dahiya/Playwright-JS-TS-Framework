@@ -18,13 +18,14 @@ type RegData = {
     password: string,
     subsribeNewsletter: string
 
-};
+};  
 
 
 type csvFixture = {
     regData: RegData[];
 };
 
+/* eslint-disable no-empty-pattern */               // this line is added to remove "empty object pattern" error from the ES Lint report. Add this at line level or file level 
 export const dataTest = base.extend<csvFixture>({                            // name of fixture is dataTest
     regData : async ({ }, use) => {
 

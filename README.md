@@ -28,8 +28,8 @@ Click the badges below to view the latest reports published via GitHub Pages:
 
 ---
 
-## Main Dashboard for Reports : Manual Run
+## Main Dashboard for Reports : Manual Run / CICD Auto Pipeline
 
-[![Dashboard: Manual Run](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://satish-dahiya.github.io/Playwright-JS-TS-Framework/)
+[![Dashboard:](https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework/actions/workflows/playwright.yml/badge.svg)](https://satish-dahiya.github.io/Playwright-JS-TS-Framework/)
 
 ---

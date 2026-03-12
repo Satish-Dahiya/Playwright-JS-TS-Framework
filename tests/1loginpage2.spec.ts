@@ -18,7 +18,7 @@ Custom Fixture is used in below test.
 
 // import {test, expect} from '@playwright/test';      // remove this line when test and expect from fixture are imported.
 import {LoginPage} from '../pages/1LoginPage1';
-import { HomePage } from '../pages/2HomePage1';
+// import { HomePage } from '../pages/2HomePage1';
 
 import {test, expect} from '../fixtures/4baseFixtures1';
 
