@@ -64,19 +64,19 @@ Value: Paste the webhook URL
 Click "Add secret"
 Once done, re-run the workflow and you'll get Slack notifications in your chosen channel!
 
-These are email ids of email domain of Naveen from Hostinger.com:-
-submit@naveenautomationlabs.com
-training@naveenautomationlabs.com
-mail@naveenautomationlabs.com
+These are Server email ids of email domain of Naveen from Hostinger.com:-
+submit@naveenautomationlabs.com              ..dont use it
+training@naveenautomationlabs.com          .. use this email as MAIL_USERNAME and MAIL_FROM while adding to GITHUB Secrets.
+mail@naveenautomationlabs.com                ..dont use it
 
 In GITHUB Repo, Go to Actions tab > Secrets and Variables > Actions > Secrets tab > Repository secrets
 Add all the secrets one by one by clicking on 'New Repository Secret', with below values:-
 Secret	Value
 MAIL_SERVER	smtp.hostinger.com
 MAIL_PORT	587
-MAIL_USERNAME	mail@naveenautomationlabs.com
+MAIL_USERNAME	training@naveenautomationlabs.com
 MAIL_PASSWORD	Selenium@123456
-MAIL_FROM	CI Notifications <mail@naveenautomationlabs.com>
+MAIL_FROM	CI Notifications <training@naveenautomationlabs.com>
 NOTIFICATION_EMAILS	recipient1@gmail.com,recipient2@company.com
 
 Create .eslintrc.cjs file in root project folder to imlement static code analysis by ES Lint. ( get file content from Naveen's GitHub repo )
@@ -87,6 +87,11 @@ Add the below 4 lint related scripts in the package.json file.
 "lint:fix": "eslint . --ext .ts,.js --fix",
 "lint:report": "eslint . --ext .ts,.js -f html -o eslint-report/index.html || true",
 "lint:report:json": "eslint . --ext .ts,.js -f json -o eslint-report/eslint-results.json || true", 
+
+lint   --> Script shortcut is used to show error logs of report on terminal console itself.
+lint:fix   --> Script shortcut is used to fix the error in ES Lint report.
+lint:report   -->  Script shortcut is used to generate the html file of ES Lint report.
+lint:report:json   --> Script shortcut is used to generate the JSON file of ES Lint report. 
 
 Add the below 3 lint related devDependencies in the package.json file and then run 'npm install' in terminal to install all these devDependencies.
 "@typescript-eslint/eslint-plugin": "^7.0.0",

@@ -1,0 +1,52 @@
+Steps to configure CICD Pipeline in Jenkins and its integration with Project Framework with Email/Slack Notification.
+
+Download jenkins.war file from google and install it using 'java -jar jenkins.war' in the CMD window.
+'Jenkins is fully up and running' message will be displayed in CMD.
+Run jenkins on localhost:8080 and set username and password.
+
+Create a Jenkinsfile in the root project and take its content from the Naveens github repo. (https://github.com/naveenanimation20/June2025PWFramework/)
+
+Steps:
+Dashboard > Manage Jenkins > Plugins 
+NodeJS Plugin
+allure
+html publisher
+email extension Plugin
+slack Notification
+
+Dashboard > Manage Jenkins > System > Extended E-mail Notification
+SMTP server as smtp.hostinger.com
+SMTP port  as 587 (TLS) or 465 for SSL
+Advanced -> Select 'use SSL'
+Credentials > Click Add > add username as 'training@naveenautomationlabs.com' and password as 'Selenium@123456' > Save
+Default Content > Add our own content in this box.
+
+Dashboard > Manage Jenkins > System > E-mail Notification
+SMTP server as smtp.hostinger.com
+Advanced > Select 'Use SMTP Authentication' and add username as 'training@naveenautomationlabs.com' and password as 'Selenium@123456'
+Advance > Select 'use SSL'
+SMTP port  as 587 (TLS) or 465 for SSL
+Reply-To Address > CI Notification <training@naveenautomationlabs.com>
+Select checkbox 'Test configuration by sending test e-mail' and click 'Test Configuration. 
+
+Slack > Credential > Click Add > Select Select Text > Enter secret as 'T0AK8UULB1V/B0ALMJ85TDF/KyxwkffGRitHyUyS9ety0kkx'
+https://hooks.slack.com/services/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
+T0AK8UULB1V/B0ALMJ85TDF/KyxwkffGRitHyUyS9ety0kkx
+Slack > Advanced >  Override URL > Enter 'https://hooks.slack.com/services/'
+Click on 'Test Connection' > message comes on selected slack channel.
+Click on Appy and Save
+
+Dashboard > Manage Jenkins > Tools
+NodeJS installations > uncheck 'install automatically'
+Installation directory > add path of node js --> \Program Files\nodejs\node.exe
+Allure Commandline installations > add name as 'allure'
+click Apply and Save
+
+New Item > Enter Item name as 'Playwright CICD Pipeline'
+Select Pipeline
+General > Enter Description
+
+
+
+
+
