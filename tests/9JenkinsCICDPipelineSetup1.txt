@@ -19,6 +19,7 @@ SMTP server as smtp.hostinger.com
 SMTP port  as 587 (TLS) or 465 for SSL
 Advanced -> Select 'use SSL'
 Credentials > Click Add > add username as 'training@naveenautomationlabs.com' and password as 'Selenium@123456' > Save
+Default Recipients > Add comma seperated Recipients emails like 'aaa@gg.com, dddd@qqqq.com'
 Default Content > Add our own content in this box.
 
 Dashboard > Manage Jenkins > System > E-mail Notification
@@ -42,11 +43,19 @@ Installation directory > add path of node js --> \Program Files\nodejs\node.exe
 Allure Commandline installations > add name as 'allure'
 click Apply and Save
 
+In mean time , push the Jenkinsfile to the github repo.
+
 New Item > Enter Item name as 'Playwright CICD Pipeline'
 Select Pipeline
 General > Enter Description
+Pipeline > Select 'Pipeline script from SCM' in Definition.
+SCM > select GIT 
+Repository URL > Enter https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework
+Script Path > enter Jenkinsfile
+Click Apply and Save
 
+Run the Job/Pipeline from 'Build Now' button to trigger the build.
+The look and feel / UI of the reports in the jenkins will be broken, so add the extenstion 'Disable Content-Security-Policy' in browser from google to fix it.
+Any stage can be run once the job completes once from 'Restart' button.
 
-
-
-
+Add the ESLint extension in VSC from Setting > Extensions, to get the errors in opend filed for any static code analysis errors.
