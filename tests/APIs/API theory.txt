@@ -1,0 +1,100 @@
+================== VID -1 ===========
+
+Practise with gorest.co.in for dummy APIS.
+
+Create an account on gorest.co.in to generate the Access Token . ( Bearer token)
+63f49875bca23d116747370c615f55ccd9364355e311270f0f6713830eb2b58c
+
+REST API Http Response Codes
+200: OK. Everything worked as expected.
+201: A resource was successfully created in response to a POST request. The Location header contains the URL pointing to the newly created resource.
+204: The request was handled successfully and the response contains no body content (like a DELETE request).
+304: The resource was not modified. You can use the cached version.
+400: Bad request. This could be caused by various actions by the user, such as providing invalid JSON data in the request body etc.
+401: Authentication failed.
+403: The authenticated user is not allowed to access the specified API endpoint.
+404: The requested resource does not exist.
+405: Method not allowed. Please check the Allow header for the allowed HTTP methods.
+415: Unsupported media type. The requested content type or version number is invalid.
+422: Data validation failed (in response to a POST request, for example). Please check the response body for detailed error messages.
+429: Too many requests. The request was rejected due to rate limiting.
+500: Internal server error. This could be caused by internal program errors.
+
+Use the Jayway JsonPath Evaluator on website : https://jsonpath.fly.dev/ , to parse the complex to complex json.
+There are various queries which can be used to retrieve required data from json after parsing it.
+
+============== VID-2 =============
+
+Add the username and paswword in playwright.config.ts file under use section to read these from the config file, rather than writing in test case.
+'httpCredentials' parameter can be used just once in config.ts file.
+httpCredentials: {
+      username : 'admin',
+      password: 'admin'
+    }
+    
+OAUTH2.0 uses grant type to authenticate an API Endpoint.
+grant_type = client_credentials
+client_id = some string
+client_secret = some string
+
+To get above values, create account on Spotify developer site :  https://developer.spotify.com/ and Create an App on it.
+Get these values from the Created App on Spotify Developer's portal.
+Client id = 3800e6cf42e546ad9780b4810341f952
+Client secret = ca0dd18b88c54b0abf03cc84afe91e84
+In the above account, go to Documentation > Products > Open 'Web Api' in another tab to get steps to create Access Token.
+Seperate endpoint (   https://accounts.spotify.com/api/token    )   is used to create Access Token using 3 parameters.
+stringify() method is used to format the json response as shown below:
+JSON.stringify(responsedata, null, 2)      -->> returns a string after formatting it.
+JSON.parse() method is used to convert json string into json object. ( opposite of stringify() method )
+
+
+3 Steps to parse complex JSONs using jsonpath concept:-->>
+Step-1: 
+'jsonpath-plus' library is used to parse the complex jsons. ( POJO classes are not used here .)
+Go to https://www.npmjs.com/package/jsonpath-plus
+Install the 'jsonpath-plus' library from npm package using 'npm install jsonpath-plus' from terminal.
+
+Step-2:
+Use the Jayway JsonPath Evaluator on website : https://jsonpath.fly.dev/ , to parse the complex to complex json.
+There are various queries which can be used to retrieve required data from json after parsing it.
+
+Step-3:
+Go to https://github.com/json-path/JsonPath to find various jsonpath formulas with a sample json as shown below:-.
+
+JsonPath	              Result
+$.store.book[*].author	The authors of all books
+$..author             	All authors
+$.store.*	              All things, both books and bicycles
+$.store..price	        The price of everything
+$..book[2]	            The third book
+$..book[-2]	             The second to last book
+$..book[0,1]	          The first two books
+$..book[:2]	             All books from index 0 (inclusive) until index 2 (exclusive)
+$..book[1:2]	           All books from index 1 (inclusive) until index 2 (exclusive)
+$..book[-2:]	           Last two books
+$..book[2:]	             All books from index 2 (inclusive) to last
+$..book[?(@.isbn)]	     All books with an ISBN number
+$.store.book[?(@.price < 10)]	              All books in store cheaper than 10
+$..book[?(@.price <= $['expensive'])]	      All books in store that are not "expensive"
+$..book[?(@.author =~ /.*REES/i)]	          All books matching regex (ignore case)
+$..*	                                      Give me every thing
+$..book.length()	                          The number of books
+
+
+====== JSON SCHEMA VALIDATION =====
+To validate a json schema, install the 'ajv' library using 'npm install ajv' from VSC terminal.
+We can have the extra paramaters in SCHEMA, but less parameters will give error.
+Go to 'https://transform.tools/json-to-json-schema' to generate the sample schema of our json.
+Create a 'schemas' folder in root project and create a .json file in it.
+Now copy the required JSON Schema ( generated from https://transform.tools/json-to-json-schema site ) in above created .json file.
+Steps to validate a json schema:-
+1. set up ajv
+    const myAjv = new Ajv();
+2. load the json schema files
+    const myUserSchema = JSON.parse(fs.readFileSync(path.resolve('./schemas/getusersschema.json'), 'utf-8'));
+3. validate the json schema
+    const validatedSchema = myAjv.compile(myUserSchema);
+    const isValid = validatedSchema(data);
+   
+Errors can be captured in invalid schema using 'error' property as shown below:-
+validatedSchema.error

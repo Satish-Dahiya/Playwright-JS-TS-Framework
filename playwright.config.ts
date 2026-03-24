@@ -38,6 +38,12 @@ export default defineConfig({
     screenshot: 'on-first-failure',
     video: 'on',
     baseURL: 'https://naveenautomationlabs.com/opencart/index.php',
+
+    httpCredentials: {         // to pass uname and pwd to browser Authentication pop up.
+      username : 'admin',
+      password: 'admin'
+    }
+    
   },
 
   metadata: {
