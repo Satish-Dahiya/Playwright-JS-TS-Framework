@@ -1,0 +1,46 @@
+IMPORTANT: FOR TESTING THIS, FOLLOW BELOW STEPS BY CREATING ANOTHER NEW PROJECT IN VSC AND NOT IN THIS PROJECT.
+THIS FILE IS FOR STEPS ONLY.
+
+Follow the below steps to implement Playwright MCP in the VSC.
+Model Context Protocol is Open Standard by Anthropic.
+MCP is like a USB port for AI ( Claude, GPT, GEMINI).
+
+MCP Architecture:
+Host App( Cursor/VSC) >> MCP Client ( GITHUB Copilot) <<>> MCP Server( Playwright, GITHUB, Slack, DB) <<>> External Tools (Browser, API, DB, File System).
+
+Node.js version of 18+ is required to work with MCP.
+
+There are about 20-25 Playwright MCP tools/features to perform the browser automation tasks.
+Sample tools are : browser_navigate, browser_fill, browser_click, browser_snapsot, browser_screenshot, browser_evaluate   etc....
+browser_snapsot reads the page's accessibility tree on DOM before clicking an element.
+There are 1000+ MCP Servers like Playwright MCP, Jira MCP, Slack MCP etc...
+
+Refer to the ppt provided in box by Naveen.
+
+Steps to setup Playwright MCP in VSC or Cursor:
+go to site https://github.com/microsoft/playwright-mcp
+Run the below command in terminal of VSC to add Playwright MCP server in VSC.
+code --add-mcp '{"name":"playwright","command":"npx","args":["@playwright/mcp@latest"]}'
+Above command will not work, in that case run the below command in terminal to add Playwright MCP server in VSC.
+Run the below command in terminal of VSC to add code CLi to run below command to add Playwright MCP to VSC : 
+"/path of VSC setup folder till bin folder /code" --add-mcp '{"name":"playwright","command":"npx","args":["@playwright/mcp@latest"]}'
+"/D/VSCsetup/Microsoft VS Code/bin/code" --add-mcp '{"name":"playwright","command":"npx","args":["@playwright/mcp@latest"]}'
+"Added MCP servers playwright" message will be displayed in terminal on running above command.
+Press CNTRL+SHIFT+P and search "mcp" and select "MCP: Open User Configuration" >> this will open a mcp.json file.
+Inside mcp.json file, details of Playwright MCP server will be displayed.
+Click on the start button of playwright MCP server inside the mcp.json file to start the server and close the json file now.
+Add 'GITHUB Copilot' plugins into the VSC. It will provide the Chat interface to intercat with the AI models(claude, gpt, gemini etc.) by giving prompts.
+Open the GITHUB Copilot Chat interface and select the agent, AI model and do the configure tools( select the Built-in and Playwright) accordingly.
+Provide the prompts in the chat interface now.
+Sample prompts are :
+1.
+Go to this app url: https://naveenautomationlabs.com/opencart/index.php?route=account/login
+"Login into OpenCart as sat@sat.com / test1234, search for MacBook, open the first result , add it to the cart , then screenshot the cart page and tell me the total"
+
+2.
+Go to this app url: https://naveenautomationlabs.com/opencart/index.php?route=account/login
+Login into OpenCart as sat@sat.com / test1234.
+setup a fresh playwright typescript project and write the page class for LoginPage and write one positive test and one negative test case
+Run both the test cases and give me the Pass/Fail results.
+
+### Anything can be added to project with proper prompts in GITHUB Copilot using Playwright MCP Server.

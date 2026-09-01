@@ -3,6 +3,7 @@ Its page class for Results page.
 It will contain only private variables,constructor and actions/methods.
 Page class will not contain any assertions. ( test spec file/case will contain it.)
 Import ElementUtil class here from ElementUtil.ts file.
+count() method will return the number of elements in the array of locators.
  */
 
 import { Locator, Page } from '@playwright/test';
@@ -27,10 +28,10 @@ export class ResultsPage {
 
     //3. page actions/methods
     async getSearchResultsCount(): Promise<number> {
-        return await this.results.count();
+        return await this.results.count();             // count() method will return the number of elements in the array of locators.
     }
 
-    async selectProduct(productName: string) {
+    async selectProduct(productName: string) : Promise<ProductInfoPage> {
         console.log('=====product selected is===:' + productName);
         await this.eleUtil.click(this.page.getByRole('link', { name: `${productName}` }));     // dynamic locators are written in method and not in constructor.
         return new ProductInfoPage(this.page);

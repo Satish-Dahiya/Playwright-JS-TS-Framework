@@ -1,9 +1,9 @@
 /*
-LImitation of using Fixtures with CSV file for parameterisation:-
+LImitation of using Fixtures with CSV/excel files for parameterisation:-
 for() loop cannot be used inside test() method to create multiple users using CSV file data.
 
 test() can be used inside test.describe(), but test() cannot be used inside another test() method.
-Comment the below code as it cannot be run and Do not use Fixtures with CSV files.
+Comment the below code as it cannot be run and Do not use Fixtures to read the data from CSV/excel files.
 */
 
 

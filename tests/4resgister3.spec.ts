@@ -13,7 +13,10 @@ let registrationData: RegData[] = parse(fileContent, {
 });
 
 We can maintain different playwright.config.ts files for different environments(qa,stage,prod etc).
+To run the test in different environment, use below command from terminal:
+npx playwright test --config=playwright.qa.config.ts
 */
+
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/1LoginPage1';
 import { RegisterPage } from '../pages/4RegisterPage2';
@@ -21,7 +24,7 @@ import fs from 'fs';
 import { parse } from 'csv-parse/sync';
 
 
-// schema or type of the registration data fields
+// schema or type of the registration data fields in CSV file. This type is used to read the data from CSV file.
 type RegData = {
     firstname: string,
     lastname: string,

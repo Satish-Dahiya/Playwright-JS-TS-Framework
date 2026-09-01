@@ -7,5 +7,6 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 /playwright-html-report/
+/playwright-html-report-docker/
 /allure-results/
 /allure-report/

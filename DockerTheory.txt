@@ -1,0 +1,256 @@
+====MOST MOST IMPORTANT=======:
+THE VERISON OF PLAYWRIGHT IN THE VSC AND VERSION OF PLAYWRIGHT IMAGE DOWNLOADED FROM DOCKER HUB SHOULD BE SAME.
+AND CONTAINER SHOULD BE UP AND RUNNING IN 'DOCKER DESKTOP' TO EXECUTE THE TEST CASES ON DOCKER PROPERLY.
+CURRENT VERSION OF PLAYWRIGHT IMAGE AND VSC PLAYWRIGHT IS 1.59.1 ( Check in package.json file for version).
+
+To update the existing Playwright version, use below 2 commands in VSC terminal:
+npm install -D @playwright/test@latest          .. it will update to latest playwright version.
+npx playwright install                          .. it will update playwright browsers.
+
+
+
+Docker is used to run test cases on Cloud.
+1st intsall the 'Docker Desktop' application from the https://docs.docker.com/desktop/setup/install/windows-install/
+We can see the images and containers on the DOCKER Desktop UI.
+Docker image is pulled from Docker hub and Containers are created from those docker images.
+Each containers is a Linux VM having having its own Browsers.
+Multiple containers can be created using same docker image.
+docker pull
+docker run
+
+Run below commands in command prompt terminal of VSC:-
+docker images                      ... gives details of all images
+docker ps -a                        ... gives details of all containers
+
+
+
+
+# Start a Playwright server container by running below command: 
+# It will download docker image and create a container. Name of container can be any. Use ^ in windows and \ in mac.
+docker run -d --name playwright-server ^
+  -p 3000:3000 ^
+  --security-opt seccomp=unconfined ^
+  mcr.microsoft.com/playwright:v1.59.1-noble ^
+  npx playwright run-server --port 3000 --host 0.0.0.0
+
+
+# Create a new 'playwright.docker.config.ts' file at root project to test execution on Docker. [ take its content from below ]
+Add below snippet to the above .ts file to run test cases on Docker on specific port:- ( PLAYWRIGHT_SERVER_URL is passed from CLI argument ).
+connectOptions: {
+      wsEndpoint: process.env.PLAYWRIGHT_SERVER_URL || 'ws://localhost:3000',
+    },
+
+# Now Run specific test using below:
+npx playwright test --config=playwright.docker.config.ts tests/productinfo.spec.ts
+npx playwright test --config=playwright.docker.config.ts tests/3productinfo2.spec.ts          .. run my project file.
+
+
+
+  -----------------------
+docker ps | grep playwright-server                  ( playwright-server is container name)
+docker logs playwright-server                       ( playwright-server is container name)
+docker logs -f playwright-server                    ( playwright-server is container name)
+
+-------------------------
+
+
+To run container in debug-mode:
+
+=== 1st stop and remove the container ====
+docker stop playwright-server                      ( playwright-server is container name)
+docker rm playwright-server                        ( playwright-server is container name)
+
+=== Then run the container in Debug mode ===
+docker run -d --name playwright-server ^
+  -p 3000:3000 ^
+  --security-opt seccomp=unconfined ^
+  -e "DEBUG=pw:browser*,pw:api" ^
+  mcr.microsoft.com/playwright:v1.59.1-noble ^
+  sh -c "DEBUG=pw:* npx playwright run-server --port 3000 --host 0.0.0.0"
+
+
+  --
+----To See CPU/Memory usage of Container in real-time:
+docker stats containerName
+Example : docker stats playwright-server            ( playwright-server is container name)
+
+--
+
+# Run specific test
+npx playwright test --config=playwright.docker.config.ts tests/productinfo.spec.ts
+
+# Run all tests
+npx playwright test --config=playwright.docker.config.ts
+
+# Run with tag
+npx playwright test --config=playwright.docker.config.ts --grep @product
+
+
+# All Browsers
+npx playwright test --config=playwright.docker.config.ts tests/productinfo.spec.ts
+
+# Chromium only
+npx playwright test --config=playwright.docker.config.ts --project=chromium-docker tests/productinfo.spec.ts
+
+# Firefox only
+npx playwright test --config=playwright.docker.config.ts --project=firefox-docker tests/productinfo.spec.ts
+
+# WebKit only
+npx playwright test --config=playwright.docker.config.ts --project=webkit-docker tests/productinfo.spec.ts
+
+# Chromium + Firefox
+npx playwright test --config=playwright.docker.config.ts --project=chromium-docker --project=firefox-docker tests/productinfo.spec.ts
+---
+
+
+
+### To create 3 containers on different servers, open 3 new terminals and run below 3 commands one by one.  ###
+
+Step 1: Start 3 Docker Servers (3 Terminals)
+
+Terminal 1: Server 1 on port 3001
+
+docker run -d --name pw-server-1 ^
+  -p 3001:3000 ^
+  --security-opt seccomp=unconfined ^
+  mcr.microsoft.com/playwright:v1.59.1-noble ^
+  npx playwright run-server --port 3000 --host 0.0.0.0
+
+-------------------------
+
+Terminal 2: Server 2 on port 3002
+
+docker run -d --name pw-server-2 ^
+  -p 3002:3000 ^
+  --security-opt seccomp=unconfined ^
+  mcr.microsoft.com/playwright:v1.59.1-noble ^
+  npx playwright run-server --port 3000 --host 0.0.0.0
+-------------------------
+
+
+Terminal 3: Server 3 on port 3003
+
+docker run -d --name pw-server-3 ^
+  -p 3003:3000 ^
+  --security-opt seccomp=unconfined ^
+  mcr.microsoft.com/playwright:v1.59.1-noble ^
+  npx playwright run-server --port 3000 --host 0.0.0.0
+
+
+
+
+
+
+Add below snippet to the above playwright.docker.config.ts file to run test cases on Docker on specific port(SHARDING):- ( PLAYWRIGHT_SERVER_URL is passed from CLI argument ).
+connectOptions: {
+      wsEndpoint: process.env.PLAYWRIGHT_SERVER_URL || 'ws://localhost:3000',
+    },
+
+--------- Option-1 without Sharding.
+Single Server (Default):
+# Uses default ws://localhost:3000
+npx playwright test --config=playwright.docker.config.ts
+
+---------Option-2 with Sharding on Multiple Servers.
+Sharding (Override with Env Variable): Run below commands in 3 different terminals ( git bash terminal ).
+# Shard 1 → Server 1
+PLAYWRIGHT_SERVER_URL=ws://localhost:3001 npx playwright test --config=playwright.docker.config.ts --shard=1/3
+
+# Shard 2 → Server 2
+PLAYWRIGHT_SERVER_URL=ws://localhost:3002 npx playwright test --config=playwright.docker.config.ts --shard=2/3
+
+# Shard 3 → Server 3
+PLAYWRIGHT_SERVER_URL=ws://localhost:3003 npx playwright test --config=playwright.docker.config.ts --shard=3/3
+
+----------
+
+
+What is Playwright Sharding? (  https://playwright.dev/docs/test-sharding  )
+Sharding = Splitting tests into chunks and running each chunk on a different servers in parallel on different machines/servers.
+Example:
+Total tests: 30
+
+Shard 1/3 → Tests 1-10  → Server 1 (ws://localhost:3001)
+Shard 2/3 → Tests 11-20 → Server 2 (ws://localhost:3002)
+Shard 3/3 → Tests 21-30 → Server 3 (ws://localhost:3003)
+
+
+
+
+
+
+playwright.docker.config.ts: Add this file to project root to run test cases on docker.
+
+
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests',
+  fullyParallel: true,
+  workers: 10,
+  timeout: 30000,
+
+  reporter: [
+    ['html'],
+    ['list'],
+    ['allure-playwright'],
+    ['playwright-html-reporter', { 
+      testFolder: 'tests',
+      title: 'OPEN CART Docker Report',
+      project: 'Open Cart - Docker',
+      release: '9.87.6',
+      testEnvironment: 'DOCKER',
+      embedAssets: true,
+      embedAttachments: true,
+      outputFolder: 'playwright-html-report-docker',
+      minifyAssets: true,
+      startServer: false,
+    }]
+  ],
+  
+  use: {
+    trace: 'on-first-retry',
+    headless: true,
+    screenshot: 'on',
+    video: 'on',
+    baseURL: 'https://naveenautomationlabs.com/opencart/index.php',
+
+    httpCredentials: {
+      username: 'admin',
+      password: 'admin'
+    },
+
+    // Dynamic WebSocket endpoint - reads from environment variable
+    connectOptions: {
+      wsEndpoint: process.env.PLAYWRIGHT_SERVER_URL || 'ws://localhost:3000',
+    },
+  },
+
+  metadata: {
+    appUsername: 'sat@sat.com',
+    appPassword: 'test1234'
+  },
+
+  projects: [
+    {
+      name: 'chromium-docker',
+      use: {
+        ...devices['Desktop Chrome'],
+      }
+    },
+
+    {
+      name: 'firefox-docker',
+      use: {
+        ...devices['Desktop Firefox'],
+      }
+    },
+
+    {
+      name: 'webkit-docker',
+      use: {
+        ...devices['Desktop Safari'],
+      }
+    },
+  ],
+});

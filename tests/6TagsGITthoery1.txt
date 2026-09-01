@@ -12,7 +12,7 @@ Shortcut scripts to run test with tags can be added in package.json file.
 
 If required, Other options/information/annotation can also be added in tag section. These options will be shown in report.
 Use the below tag code in test() method to implement tagging and other information to be used with tagging.
-test( ' test title', tag section, async()  )
+test( ' test title', tag section, async()=>{}  )
 
 { 
     tag: ['@tag1', '@tag2', '@tag3'],
