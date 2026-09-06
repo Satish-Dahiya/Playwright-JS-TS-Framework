@@ -662,7 +662,7 @@ ${env.PROD_EMOJI} PROD: ${env.PROD_TEST_STATUS}
         failure {
             echo '❌ Pipeline failed!'
 
-//             script {
+               script {
 //                 // Slack notification
 //                 try {
 //                     slackSend(
