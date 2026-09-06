@@ -79,3 +79,5 @@ The look and feel / UI of the reports in the jenkins will be broken, so add the 
 Any stage can be run once the job completes once from 'Restart' button.
 
 Add the ESLint extension in VSC from Setting > Extensions, to see the errors in opened files, for any static code analysis errors.
+
+IMP: PIPELINE IS NOT RUNNING ON JENKINS.
