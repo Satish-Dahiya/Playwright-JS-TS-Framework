@@ -7,7 +7,7 @@ Steps to configure CICD Pipeline in Jenkins and its integration with Project Fra
 
 Download jenkins.war file from google and install it using 'java -jar jenkins.war' in the CMD window.
 'Jenkins is fully up and running' message will be displayed in CMD.
-Run jenkins on localhost:8080 and set username and password.
+Run jenkins on localhost:8080 and set username and password. (S-D / Satishjenkins@786)
 
 Create a Jenkinsfile in the root project and take its content from the Naveens github repo. (https://github.com/naveenanimation20/June2025PWFramework/)
 
@@ -29,7 +29,7 @@ Dashboard > Manage Jenkins > System > Extended E-mail Notification
 SMTP server as smtp.hostinger.com
 SMTP port  as 587 (TLS) or 465 for SSL ( there are 2 levels of security: SSL and TLS -- choose any one)
 Advanced -> Select 'use SSL'
-Credentials > Click Add > add username as 'training@naveenautomationlabs.com' and password as 'Selenium@123456' > Save
+Credentials > Click Add > select 'add username and password' option > add username as 'training@naveenautomationlabs.com' and password as 'Selenium@123456' > Save
 Default Recipients > Add comma seperated Recipients emails like 'aaa@gg.com, dddd@qqqq.com'
 Default Content > Add our own content/Description in this box.
 
@@ -45,6 +45,7 @@ MOST URGENT: IF FACING THE ERROR 'DOMAIN NOT FOUND' ERROR FOR TEST EMAIL, THEN A
 Slack > Credential > Click Add > Select 'Select Text' > Enter secret as 'T0AK8UULB1V/B0ALMJ85TDF/KyxwkffGRitHyUyS9ety0kkx'
 https://hooks.slack.com/services/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
 T0AK8UULB1V/B0ALMJ85TDF/KyxwkffGRitHyUyS9ety0kkx
+In 'Default channel / member id' > Enter #team-playwright-jenkins-slack-channel ( slack channel name )
 Slack > Advanced >  Override URL > Enter 'https://hooks.slack.com/services/'
 Click on 'Test Connection' > message comes on selected slack channel.
 Click on Apply and Save
@@ -53,8 +54,10 @@ Click on Apply and Save
 
 Dashboard > Manage Jenkins > Tools
 NodeJS installations > uncheck 'install automatically'
+Name > Enter 'NodeJS-20'
 Installation directory > add path of node js from local system/laptop --> C:\Program Files\nodejs     ( dont give path including bin folder)
 Allure Commandline installations > add name as 'allure'
+Check 'Install automatically'
 click Apply and Save
 ===============================================================================================
 
@@ -64,7 +67,7 @@ After doing all configurations in Jenkins, create a Job/Item in the Jenkins spec
 New Item > Enter Item name as 'Playwright CICD Pipeline'
 Select 'Pipeline' from various options.
 General > Enter Description
-Pipeline > Select 'Pipeline script from SCM' dropdown in Definition.
+Pipeline > Select 'Pipeline script from SCM' dropdown in Dropdown.
 SCM > select GIT 
 Repository URL > Enter git repo url : https://github.com/Satish-Dahiya/Playwright-JS-TS-Framework
 Script Path > enter 'Jenkinsfile'

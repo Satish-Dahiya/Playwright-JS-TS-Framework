@@ -37,3 +37,5 @@ git status
 git add .
 git commit -m "First Code of the Framework"
 git push origin master
+git restore --staged <file>...    ---- to unstage
+git restore <file>... to discard changes in working directory

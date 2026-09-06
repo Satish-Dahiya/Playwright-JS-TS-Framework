@@ -662,29 +662,29 @@ ${env.PROD_EMOJI} PROD: ${env.PROD_TEST_STATUS}
         failure {
             echo '❌ Pipeline failed!'
 
-            script {
-                // Slack notification
-                try {
-                    slackSend(
-                        color: 'danger',
-                        message: """❌ *Playwright Pipeline: Tests Failed*
+//             script {
+//                 // Slack notification
+//                 try {
+//                     slackSend(
+//                         color: 'danger',
+//                         message: """❌ *Playwright Pipeline: Tests Failed*
 
-*Repository:* ${env.JOB_NAME}
-*Branch:* ${env.GIT_BRANCH ?: 'N/A'}
-*Build:* #${env.BUILD_NUMBER}
+// *Repository:* ${env.JOB_NAME}
+// *Branch:* ${env.GIT_BRANCH ?: 'N/A'}
+// *Build:* #${env.BUILD_NUMBER}
 
-*Test Results:*
-${env.DEV_EMOJI ?: '❓'} DEV: ${env.DEV_TEST_STATUS ?: 'not run'}
-${env.QA_EMOJI ?: '❓'} QA: ${env.QA_TEST_STATUS ?: 'not run'}
-${env.STAGE_EMOJI ?: '❓'} STAGE: ${env.STAGE_TEST_STATUS ?: 'not run'}
-${env.PROD_EMOJI ?: '❓'} PROD: ${env.PROD_TEST_STATUS ?: 'not run'}
+// *Test Results:*
+// ${env.DEV_EMOJI ?: '❓'} DEV: ${env.DEV_TEST_STATUS ?: 'not run'}
+// ${env.QA_EMOJI ?: '❓'} QA: ${env.QA_TEST_STATUS ?: 'not run'}
+// ${env.STAGE_EMOJI ?: '❓'} STAGE: ${env.STAGE_TEST_STATUS ?: 'not run'}
+// ${env.PROD_EMOJI ?: '❓'} PROD: ${env.PROD_TEST_STATUS ?: 'not run'}
 
-📊 <${env.BUILD_URL}allure|View Allure Report>
-🔗 <${env.BUILD_URL}|View Build>"""
-                    )
-                } catch (Exception e) {
-                    echo "Slack notification failed: ${e.message}"
-                }
+// 📊 <${env.BUILD_URL}allure|View Allure Report>
+// 🔗 <${env.BUILD_URL}|View Build>"""
+//                     )
+//                 } catch (Exception e) {
+//                     echo "Slack notification failed: ${e.message}"
+//                 }
 
                 // Email notification
                 try {
